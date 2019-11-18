@@ -80,8 +80,6 @@ for epoch in range(EPOCH):
     running_loss = 0.0
     running_acc = 0.0
     i = 0
-    print(shape(train))
-    a=input()
     while (i + 1) * BATCH_SIZE < len(train):
         data = train[i * BATCH_SIZE:(i + 1) * BATCH_SIZE]
         data = np.array(data)
