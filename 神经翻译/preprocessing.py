@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*
 """
 Author: Junkai-Yan
+File: preprocessing.py
 Finished in 2019/12/16
 This file pre-process source data set.
-Firstly, read training data set, numbering the word in training set for source language and target language in a dict.
+Firstly, read in training data set, numbering the word in training set for source language and target language in a dict.
 Secondly, convert the sentence to num sequence according to the dict generated before.
-Thirdly, read testing and developing data set, convert the sentence to num sequence according to the dict.
-Finally, write relevant information in txt file.
+Thirdly, read in testing and developing data set, convert the sentence to num sequence according to the dict.
+Lastly, write relevant information in txt file.
 **********
 What you should focus on is that I padding '<BOS>' and '<EOS>' at the beginning and ending of the sentence respectively.
-If the word in testing or developing data set is a new word, I replacing it by 'UKN'.
-What's more, there is a word '<PAD>' in my dict, means to padding if the sentences in a batch have different length in a batch.
+If the word in testing or developing data set is a new word, I replacing it by '<UKN>'.
+What's more, there is a word '<PAD>' in my dict, means to padding if the sentences have different length in a batch.
 Word segmentation tool is jieba.
 """
 
@@ -74,8 +75,8 @@ def open_file_test(filename, word2num):
 
 
 if __name__=="__main__":
-    chinese_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2, '<PAD>':3}
-    english_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2, '<PAD>':3}
+    chinese_word2num = {'<BOS>':0, '<EOS>':1, '<UKN>':2, '<PAD>':3}
+    english_word2num = {'<BOS>':0, '<EOS>':1, '<UKN>':2, '<PAD>':3}
     open_file_train('train_source_8000.txt', chinese_word2num)
     open_file_train('train_target_8000.txt', english_word2num)
     open_file_test('test_source_1000.txt', chinese_word2num)
