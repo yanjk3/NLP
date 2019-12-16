@@ -10,6 +10,7 @@ Finally, write relevant information in txt file.
 **********
 What you should focus on is that I padding '<BOS>' and '<EOS>' at the beginning and ending of the sentence respectively.
 If the word in testing or developing data set is a new word, I replacing it by 'UKN'.
+What's more, there is a word '<PAD>' in my dict, means to padding if the sentences in a batch have different length in a batch.
 Word segmentation tool is jieba.
 """
 
@@ -73,8 +74,8 @@ def open_file_test(filename, word2num):
 
 
 if __name__=="__main__":
-    chinese_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2}
-    english_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2}
+    chinese_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2, '<PAD>':3}
+    english_word2num = {'<BOS>':0, '<EOS>':1, 'UKN':2, '<PAD>':3}
     open_file_train('train_source_8000.txt', chinese_word2num)
     open_file_train('train_target_8000.txt', english_word2num)
     open_file_test('test_source_1000.txt', chinese_word2num)
