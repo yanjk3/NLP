@@ -64,9 +64,9 @@ def open_file_test(filename, word2num):
         sentence = sentence.split()
         # convert sentence to sequence
         for word in sentence:
-            # if is new word, replacing it by 'UKN'
+            # if is new word, replacing it by '<UKN>'
             if word not in word2num:
-                f_w_data.write(str(word2num['UKN']) + ' ')
+                f_w_data.write(str(word2num['<UKN>']) + ' ')
             else:
                 f_w_data.write(str(word2num[word])+' ')
         f_w_data.write('\n')
