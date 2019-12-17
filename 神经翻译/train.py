@@ -6,12 +6,14 @@ Finished in 2019/12/17
 This file trains the model using dataset_10000(after pre-processing).
 Model is in model.py.
 Firstly, read in training data, training target and their dict.
-Secondly, build the network
+Secondly, build the network, pay attention to the vacabulary size of encoder and decoder. 
 Thirdly, divided data set into some batches.
-    For each batches, padding training data such that its length equal to the
+    For each batch, padding training data such that its length equal to the
     longest sequence of this batch. What's more, padding training target to
     its length = max_length, which is a hyper parameter.
-Thirdly, throw
+Thirdly, throw the training data into Encoder, and get the output and the last hidden state.
+    In this part, the LSTM of the Encoder is bidirection, so the output should be reshaped
+    reshaped to (seq_len, bs, hidden_dim), I add the
 **********
 What you should focus on is
 """
