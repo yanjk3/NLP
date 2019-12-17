@@ -113,8 +113,8 @@ def padding_label(batch_data, num2word, length):
 
 if __name__=="__main__":
     # generate data set and dict
-    training_data = get_data('./predata_10000/train_source_8000.txt', 200)
-    training_label = get_data('./predata_10000/train_target_8000.txt', 200)
+    training_data = get_data('./predata_10000/train_source_8000.txt')
+    training_label = get_data('./predata_10000/train_target_8000.txt')
     source_num2word = get_num2word('./predata_10000/num2word_train_source_8000.txt')
     target_num2word = get_num2word('./predata_10000/num2word_train_target_8000.txt')
 
