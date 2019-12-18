@@ -9,9 +9,11 @@ Secondly, convert the sentence to num sequence according to the dict generated b
 Thirdly, read in testing and developing data set, convert the sentence to num sequence according to the dict.
 Lastly, write relevant information in txt file.
 **********
-What you should focus on is that I padding '<BOS>' and '<EOS>' at the beginning and ending of the sentence respectively.
+What you should focus on is:
+I change all words of target into lower case to avoid the influence of the beginning of the sentence.
+I padding '<BOS>' and '<EOS>' at the beginning and ending of the sentence respectively.
 If the word in testing or developing data set is a new word, I replacing it by '<UKN>'.
-What's more, there is a word '<PAD>' in my dict, means to padding if the sentences have different length in a batch.
+There is a word '<PAD>' in my dict, means to padding if the sentences have different length in a batch.
 Word segmentation tool is jieba.
 """
 
@@ -30,7 +32,7 @@ def open_file_train(filename, word2num):
     f_w_word2num = open('./predata_10000/word2num_'+filename, 'w',encoding='utf-8')
     f_w_num2word = open('./predata_10000/num2word_'+filename, 'w',encoding='utf-8')
     for line in f_r:
-        line = line.strip()
+        line = line.strip().lower()
         seg_list = jieba.cut(line)
         sentence = '<BOS> ' + " ".join(seg_list) +' <EOS>'
         sentence = sentence.split()
