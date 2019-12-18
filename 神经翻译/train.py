@@ -120,8 +120,8 @@ if __name__=="__main__":
     teaching_force_ratio = 0.5
 
     # generate NN
-    encoder = Encoder(len(source_num2word), 600, 200).cuda()
-    decoder = Decoder(len(target_num2word), 600, 200).cuda()
+    encoder = Encoder(len(source_num2word), 600, 300).cuda()
+    decoder = Decoder(len(target_num2word), 600, 300).cuda()
     if encoder.hidden_dim != decoder.hidden_dim:
         raise RuntimeError('Encoder and Decoder should have the same hidden dimension!')
 
