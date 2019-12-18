@@ -8,7 +8,7 @@ Model is in model.py.
 Firstly, read in training data, training target and their dict.
 Secondly, build the network, pay attention to the vocabulary size of encoder and decoder.
 Thirdly, divided data set into some batches.
-    For each batches, padding training data and label,
+    For each batch, padding training data and label,
     such that its length equal to the longest sequence of this batch.
 Fourthly, throw the batch training data into Encoder, and get the output and the last hidden state.
     In this part, because the LSTM is bidirectional, the output size of it is (seq_len, bs, 2*hidden_dim),
