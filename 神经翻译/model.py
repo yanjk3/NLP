@@ -13,7 +13,8 @@ Fourthly, calculate attention vector using a Linear layer with a tanh.
 Lastly, calculate output using a Linear layer.
 The principle of how to calculate attention vector is in page 18~19 of PPT.
 **********
-What you should focus on is the dimension transformation after every layer.
+What you should focus on is:
+The dimension transformation after every layer.
 What's more, using transpose function to adjust dimension of Tensor is convenient.
 The initial hidden state of Decoder is from the last hidden state of Encoder.(It will be shown in train.py)
 """
