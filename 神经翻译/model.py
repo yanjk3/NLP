@@ -85,7 +85,7 @@ class Attention(nn.Module):
         whs = self.attention_layer(hs).transpose(1, 2)
         # (bs, 1, hidden_dim) * (bs, hidden_dim, seq_len) = (bs, 1, seq_len)
         score = torch.bmm(ht, whs)
-        weight = F.softmax(score, dim=1)
+        weight = F.softmax(score, dim=2)
         return weight
 
 
