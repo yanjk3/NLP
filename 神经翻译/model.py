@@ -135,4 +135,5 @@ class Decoder(nn.Module):
         context = self.wc(context)
         ht = F.torch.tanh(context)
         output = self.out(ht)
+        output = F.softmax(output, dim=2)
         return output, hidden
