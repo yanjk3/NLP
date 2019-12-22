@@ -142,7 +142,7 @@ if __name__=="__main__":
         epoch_loss = 0.0
         # loop for batch
         while 1:
-            loss = 0.0
+            batch_loss = 0.0
             # divided data set into batch
             # if the rest data less than a batch, take all of them
             if (i + 1)*batch_size >= len(training_data):
@@ -185,17 +185,18 @@ if __name__=="__main__":
                     else:
                         _, time_step_input = torch.max(decoder_out, 2)
                         decoder_out, decoder_hidden = decoder(time_step_input, decoder_hidden, encoder_out)
-                # for each time step, calculate loss
-                loss += criterion(decoder_out.squeeze(), train_label[time_step])
-            print(loss/((i+1)*batch_size))
-            # backward and update parameters
+                # for each time step, calculate loss and backward
+                loss = criterion(decoder_out.squeeze(), train_label[time_step])
+                batch_loss += loss.item()
+                loss.backward(retain_graph=True)
+            # update parameters
             encoder_optimizer.zero_grad()
             decoder_optimizer.zero_grad()
-            loss.backward(retain_graph=True)
             encoder_optimizer.step()
             decoder_optimizer.step()
             # calculate total loss for this epoch
-            epoch_loss += loss.item()/max_length
+            epoch_loss += batch_loss
+            print(epoch_loss / (batch_size*(i+1)))
             # When flag is True, the data is run out
             if flag:
                 break
@@ -204,7 +205,7 @@ if __name__=="__main__":
         epoch_loss_list.append(epoch_loss)
         print('*' * 10)
         print('epoch: {} of {}'.format(epoch + 1, epochs))
-        print('average loss: {:.6f}'.format(epoch_loss))
+        print('average loss: {:.6f}'.format(epoch_loss/len(training_data)))
 
     # save the model
     torch.save(encoder, 'encoder.pkl')
