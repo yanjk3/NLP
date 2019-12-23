@@ -190,10 +190,10 @@ if __name__=="__main__":
                 batch_loss += loss.item()
                 loss.backward(retain_graph=True)
             # update parameters
-            encoder_optimizer.zero_grad()
-            decoder_optimizer.zero_grad()
             encoder_optimizer.step()
             decoder_optimizer.step()
+            encoder_optimizer.zero_grad()
+            decoder_optimizer.zero_grad()
             # calculate total loss for this epoch
             epoch_loss += batch_loss
             print(epoch_loss / (batch_size*(i+1)))
