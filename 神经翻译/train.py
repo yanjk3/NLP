@@ -12,7 +12,7 @@ Thirdly, divided data set into some batches.
     such that its length equal to the longest sequence of this batch.
 Fourthly, throw the batch training data into Encoder, and get the output and the last hidden state.
     In this part, because the LSTM is bidirectional, the output size of it is (seq_len, bs, 2*hidden_dim),
-    It show be reshaped to (seq_len, bs, hidden_dim), the way I choose is to add the forward output and
+    It should be squeeze to (seq_len, bs, hidden_dim), the way I choose is to add the forward output and
     the backward output, so the output size becomes (seq_len, bs, hidden_dim).
 Fifthly, init the initial hidden state of Decoder by the last hidden state of Encoder.
     In this part, the dimension problem discussed before takes place again, my operation is the same.
